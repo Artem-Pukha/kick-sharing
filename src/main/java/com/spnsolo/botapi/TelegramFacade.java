@@ -31,8 +31,8 @@ public class TelegramFacade {
         BotState botState;
         SendMessage replyMessage;
 
-        if (message.hasText()&&"/start".equals(message.getText()))botState = BotState.ASK_LOCATION;
-        if(message.hasLocation())botState = BotState.FINDING_SCOOTERS;
+        if(message.hasText() && "/start".equals(message.getText()) )botState = BotState.ASK_LOCATION;
+        else if(message.hasLocation())botState = BotState.FINDING_SCOOTERS;
         else botState = BotState.UNKNOWN_MESSAGE;
 
         botUserCache.setUsersCurrentBotState(userId, botState);
