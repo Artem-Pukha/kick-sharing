@@ -1,0 +1,3 @@
+https://api.telegram.org/bot<token>/METHOD_NAME
+
+swagger : localhost:5000/swagger-ui.html
