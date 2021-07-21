@@ -12,6 +12,7 @@
     <groupId>com.spnsolo</groupId>
     <artifactId>kick-sharing</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>kick-sharing-bot</name>
 
     <properties>
         <java.version>16</java.version>

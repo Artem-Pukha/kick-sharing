@@ -1,8 +1,6 @@
 package com.spnsolo.repository;
 
-import com.spnsolo.entity.Coordinates;
 import com.spnsolo.entity.Scooter;
-import com.spnsolo.model.SaveScooter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
