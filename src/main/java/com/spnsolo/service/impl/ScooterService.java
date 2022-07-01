@@ -68,4 +68,8 @@ public class ScooterService implements ScooterCRUD {
         }
         return ScooterResponse.fromScooter(all);
     }
+
+    public List<ScooterResponse> getAllAvailable(){
+        return ScooterResponse.fromScooter(repository.getAllAvailable());
+    }
 }
