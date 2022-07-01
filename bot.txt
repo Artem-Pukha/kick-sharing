@@ -1,3 +1,4 @@
 https://api.telegram.org/bot<token>/METHOD_NAME
+https://api.telegram.org/bot<token>/setWebhook?url=
 
-swagger : localhost:5000/swagger-ui.html
+swagger : localhost:8080/swagger-ui.html

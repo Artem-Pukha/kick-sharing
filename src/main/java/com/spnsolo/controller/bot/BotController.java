@@ -1,4 +1,4 @@
-package com.spnsolo.controller;
+package com.spnsolo.controller.bot;
 
 import com.spnsolo.KickSharingBot;
 import org.springframework.web.bind.annotation.RequestBody;

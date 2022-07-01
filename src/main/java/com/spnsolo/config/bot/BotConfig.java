@@ -1,4 +1,4 @@
-package com.spnsolo.config;
+package com.spnsolo.config.bot;
 
 import com.spnsolo.KickSharingBot;
 import com.spnsolo.botapi.TelegramFacade;

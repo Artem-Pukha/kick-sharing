@@ -3,7 +3,7 @@ package com.spnsolo.botapi.handler;
 import com.spnsolo.botapi.BotState;
 import com.spnsolo.botapi.InputMessageHandler;
 import com.spnsolo.cache.UserCache;
-import com.spnsolo.service.ReplyMessageService;
+import com.spnsolo.service.bot.ReplyMessageService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;

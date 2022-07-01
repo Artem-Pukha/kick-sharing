@@ -1,4 +1,4 @@
-package com.spnsolo.service;
+package com.spnsolo.service.bot;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

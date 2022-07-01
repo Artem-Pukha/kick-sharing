@@ -1,4 +1,4 @@
-package com.spnsolo.service;
+package com.spnsolo.service.bot;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;

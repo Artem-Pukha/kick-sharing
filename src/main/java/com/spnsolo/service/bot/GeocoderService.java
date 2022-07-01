@@ -1,4 +1,4 @@
-package com.spnsolo.service;
+package com.spnsolo.service.bot;
 
 import com.byteowls.jopencage.JOpenCageGeocoder;
 import com.byteowls.jopencage.model.JOpenCageResponse;
