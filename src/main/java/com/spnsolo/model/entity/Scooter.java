@@ -1,4 +1,4 @@
-package com.spnsolo.entity;
+package com.spnsolo.model.entity;
 
 import javax.persistence.*;
 import java.util.Objects;

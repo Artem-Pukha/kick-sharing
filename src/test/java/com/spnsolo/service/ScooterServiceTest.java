@@ -1,7 +1,7 @@
 package com.spnsolo.service;
 
-import com.spnsolo.entity.Coordinates;
-import com.spnsolo.entity.Scooter;
+import com.spnsolo.model.entity.Coordinates;
+import com.spnsolo.model.entity.Scooter;
 import com.spnsolo.model.SaveScooter;
 import com.spnsolo.model.ScooterResponse;
 import com.spnsolo.repository.ScooterRepository;
@@ -35,8 +35,8 @@ public class ScooterServiceTest {
         long presentId = 1;
         Scooter scooter = new Scooter(presentId,54,true,new Coordinates(45.1,36.2));
 
-        when(repository.getById(absentId)).thenReturn(Optional.empty());
-        when(repository.getById(presentId)).thenReturn(Optional.of(scooter));
+        when(repository.findById(absentId)).thenReturn(Optional.empty());
+        when(repository.findById(presentId)).thenReturn(Optional.of(scooter));
 
         Optional<ScooterResponse> absentResponse = service.getById(absentId);
 
@@ -61,9 +61,9 @@ public class ScooterServiceTest {
 
         SaveScooter saveScooter = new SaveScooter(100,true,45.1,36.2);
 
-        when(repository.getById(absentId)).thenReturn(Optional.empty());
-        when(repository.getById(presentId)).thenReturn(Optional.of(scooter));
-        when(repository.update(scooter)).thenReturn(scooter);
+        when(repository.findById(absentId)).thenReturn(Optional.empty());
+        when(repository.findById(presentId)).thenReturn(Optional.of(scooter));
+        when(repository.save(scooter)).thenReturn(scooter);
 
         assertThatExceptionOfType(ResponseStatusException.class)
                 .isThrownBy(() -> service.update(absentId, saveScooter))
@@ -79,7 +79,7 @@ public class ScooterServiceTest {
         assertThat(saveScooter.getLongitude()).isEqualTo(scooter.getCoordinates().getLongitude());
 
         verify(repository).getById(presentId);
-        verify(repository).update(scooter);
+        verify(repository).save(scooter);
 
         verifyNoMoreInteractions(repository);
     }
@@ -90,8 +90,8 @@ public class ScooterServiceTest {
         long presentId = 1;
         Scooter scooter = new Scooter(presentId,54,true,new Coordinates(45.1,36.2));
 
-        when(repository.getById(absentId)).thenReturn(Optional.empty());
-        when(repository.getById(presentId)).thenReturn(Optional.of(scooter));
+        when(repository.findById(absentId)).thenReturn(Optional.empty());
+        when(repository.findById(presentId)).thenReturn(Optional.of(scooter));
 
         Optional<ScooterResponse> absentResponse = service.deleteById(absentId);
 
@@ -114,7 +114,7 @@ public class ScooterServiceTest {
         SaveScooter saveScooter = new SaveScooter(100,true,45.1,36.2);
         long scooterId = 1;
 
-        when(repository.create(notNull())).thenAnswer(invocation -> {
+        when(repository.save(notNull())).thenAnswer(invocation -> {
             Scooter entity = invocation.getArgument(0);
             assertThat(entity.getId()).isNull();
             assertThat(entity.getCharge()).isEqualTo(saveScooter.getCharge());
@@ -132,7 +132,7 @@ public class ScooterServiceTest {
         assertThat(response.getLongitude()).isEqualTo(saveScooter.getLongitude());
         assertThat(response.getLatitude()).isEqualTo(saveScooter.getLatitude());
 
-        verify(repository, only()).create(notNull());
+        verify(repository, only()).save(notNull());
     }
 
     private static void assertScooterMatchesResponse(Scooter scooter, ScooterResponse scooterResponse) {

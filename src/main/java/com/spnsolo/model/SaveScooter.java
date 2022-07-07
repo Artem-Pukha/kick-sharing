@@ -1,7 +1,7 @@
 package com.spnsolo.model;
 
-import com.spnsolo.entity.Coordinates;
-import com.spnsolo.entity.Scooter;
+import com.spnsolo.model.entity.Coordinates;
+import com.spnsolo.model.entity.Scooter;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

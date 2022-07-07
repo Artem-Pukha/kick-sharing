@@ -1,7 +1,7 @@
 package com.spnsolo.model;
 
-import com.spnsolo.entity.Coordinates;
-import com.spnsolo.entity.Scooter;
+import com.spnsolo.model.entity.Coordinates;
+import com.spnsolo.model.entity.Scooter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.spnsolo.entity;
+package com.spnsolo.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

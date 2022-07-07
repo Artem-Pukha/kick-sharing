@@ -6,6 +6,7 @@ import com.spnsolo.model.ScooterResponse;
 import com.spnsolo.service.ScooterCRUD;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,29 +22,34 @@ public class ScooterController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('scooters:read')")
     public ScooterResponse get(@PathVariable long id) {
         return scooterService.getById(id).orElseThrow(() -> ScooterExceptions.scooterNotFound(id));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
+    @PreAuthorize("hasAuthority('scooters:write')")
     public ScooterResponse create(@Valid @RequestBody SaveScooter request) {
         return scooterService.create(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('scooters:write')")
     public void update(@PathVariable long id, @Valid @RequestBody SaveScooter request) {
         scooterService.update(id ,request);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('scooters:write')")
     public ScooterResponse delete(@PathVariable long id) {
         return scooterService.deleteById(id)
                 .orElseThrow(() -> ScooterExceptions.scooterNotFound(id));
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('scooters:read')")
     public List<ScooterResponse> getAllAvailable(){
         return scooterService.getAllAvailable();
     }

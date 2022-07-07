@@ -3,7 +3,7 @@ package com.spnsolo.service.impl;
 import com.spnsolo.exception.ScooterExceptions;
 import com.spnsolo.model.ScooterResponse;
 import com.spnsolo.model.SaveScooter;
-import com.spnsolo.entity.Scooter;
+import com.spnsolo.model.entity.Scooter;
 import com.spnsolo.repository.ScooterRepository;
 import com.spnsolo.service.ScooterCRUD;
 import com.spnsolo.util.CalculatorCoordinates;
@@ -28,34 +28,34 @@ public class ScooterService implements ScooterCRUD {
     @Override
     public ScooterResponse create(final SaveScooter request) {
         Scooter scooter = request.toScooter();
-        return ScooterResponse.fromScooter(repository.create(scooter));
+        return ScooterResponse.fromScooter(repository.save(scooter));
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<ScooterResponse> getById(long id) {
-        return repository.getById(id).map(ScooterResponse::fromScooter);
+        return Optional.of(ScooterResponse.fromScooter(repository.getById(id)));
     }
 
     @Override
     public void update(long id, SaveScooter request) {
-        Scooter scooter = repository.getById(id).orElseThrow(() -> ScooterExceptions.scooterNotFound(id));
+        Scooter scooter = Optional.of(repository.getById(id)).orElseThrow(() -> ScooterExceptions.scooterNotFound(id));
         scooter.getCoordinates().setLatitude(request.getLatitude());
         scooter.getCoordinates().setLongitude(request.getLongitude());
         scooter.setAvailable(request.isAvailable());
         scooter.setCharge(request.getCharge());
-        repository.update(scooter);
+        repository.save(scooter);
     }
 
     @Override
     public Optional<ScooterResponse> deleteById(long id) {
-        Optional<Scooter> message = repository.getById(id);
+        Optional<Scooter> message = Optional.of(repository.getById(id));
         if(message.isPresent())repository.deleteById(id);
         return message.map(ScooterResponse::fromScooter);
     }
 
     public List<ScooterResponse> getAllAvailableNearCoordinates(double longitude, double latitude, float radius){
-        List<Scooter> all = repository.getAllAvailable();
+        List<Scooter> all = repository.getAllByAvailableTrue();
         double distance;
 
         Iterator<Scooter> iterator = all.iterator();
@@ -70,6 +70,6 @@ public class ScooterService implements ScooterCRUD {
     }
 
     public List<ScooterResponse> getAllAvailable(){
-        return ScooterResponse.fromScooter(repository.getAllAvailable());
+        return ScooterResponse.fromScooter(repository.getAllByAvailableTrue());
     }
 }
